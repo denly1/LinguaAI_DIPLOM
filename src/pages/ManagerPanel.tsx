@@ -3,7 +3,7 @@ import {
   BookOpen, Plus, Edit3, Trash2, Search,
   FileText, Gamepad2, ShoppingCart, X,
   Download, Upload, Users, BarChart3, Shield,
-  Copy, Mail, Tag, ClipboardList, Eye, CheckSquare, Square, Send
+  Copy, Tag, Eye, CheckSquare, Square
 } from 'lucide-react';
 import { useCourses, uuidv4 } from '../context/CoursesContext';
 import { useAuth } from '../context/AuthContext';
@@ -14,7 +14,7 @@ import {
 import { LanguageCode, DifficultyLevel } from '../types/index';
 import './ManagerPanel.css';
 
-type Tab = 'courses' | 'tests' | 'games' | 'purchases' | 'users' | 'reports' | 'promocodes' | 'broadcast' | 'audit';
+type Tab = 'courses' | 'tests' | 'games' | 'purchases' | 'users' | 'reports' | 'promocodes';
 
 const LANG_OPTIONS: { value: LanguageCode; label: string }[] = [
   { value: 'en', label: '🇬🇧 Английский' },
@@ -522,14 +522,6 @@ const ManagerPanel: React.FC = () => {
   const [promocodes, setPromocodes] = useState<any[]>([]);
   const [promoModal, setPromoModal] = useState(false);
   const [promoForm, setPromoForm] = useState({ code: '', discount_percent: '', discount_amount: '', max_uses: '', expires_at: '', applicable_tiers: 'all', is_active: true });
-  // broadcast
-  const [broadcastSubject, setBroadcastSubject] = useState('');
-  const [broadcastHtml, setBroadcastHtml] = useState('');
-  const [broadcastTarget, setBroadcastTarget] = useState('all');
-  const [broadcastSending, setBroadcastSending] = useState(false);
-  // audit
-  const [auditLogs, setAuditLogs] = useState<any[]>([]);
-  const [auditStats, setAuditStats] = useState<any>(null);
   // user detail
   const [userDetail, setUserDetail] = useState<any>(null);
 
@@ -553,16 +545,6 @@ const ManagerPanel: React.FC = () => {
       fetch('/api/promocodes')
         .then(r => r.json())
         .then(d => { if (d.success) setPromocodes(d.promocodes); })
-        .catch(console.error);
-    }
-    if (tab === 'audit' && isAdmin) {
-      fetch('/api/audit')
-        .then(r => r.json())
-        .then(d => { if (d.success) setAuditLogs(d.logs); })
-        .catch(console.error);
-      fetch('/api/audit/stats')
-        .then(r => r.json())
-        .then(d => { if (d.success) setAuditStats(d); })
         .catch(console.error);
     }
   }, [tab, isAdmin]);
@@ -805,21 +787,6 @@ JSON формат:
     setPromocodes(prev => prev.filter(p => p.id !== id));
   };
 
-  // ── Broadcast ──────────────────────────────────────
-  const sendBroadcast = async () => {
-    if (!broadcastSubject.trim() || !broadcastHtml.trim()) return;
-    setBroadcastSending(true);
-    const res = await fetch('/api/broadcast/email', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ subject: broadcastSubject, html: broadcastHtml, target: broadcastTarget }),
-    });
-    const json = await res.json();
-    setBroadcastSending(false);
-    if (json.success) alert(`Отправлено ${json.sent} из ${json.total}`);
-    else alert('Ошибка: ' + json.error);
-  };
-
   // ── User detail ────────────────────────────────────
   const openUserDetail = (u: any) => {
     const userPurchases = state.purchases.filter(p => p.userId === u.id);
@@ -875,8 +842,6 @@ JSON формат:
             { key: 'users' as Tab, label: 'Пользователи', icon: <Users size={14} />, count: users.length },
             { key: 'reports' as Tab, label: 'Отчёты', icon: <BarChart3 size={14} />, count: 0 },
             { key: 'promocodes' as Tab, label: 'Промокоды', icon: <Tag size={14} />, count: promocodes.length },
-            { key: 'broadcast' as Tab, label: 'Рассылка', icon: <Mail size={14} />, count: 0 },
-            { key: 'audit' as Tab, label: 'Журнал', icon: <ClipboardList size={14} />, count: auditLogs.length },
           ] : []),
         ]).map(t => (
           <button
@@ -1468,100 +1433,6 @@ JSON формат:
                         <Trash2 size={12} />
                       </button>
                     </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          )}
-        </>
-      )}
-
-      {/* ── BROADCAST (admin only) ───────────────────────── */}
-      {tab === 'broadcast' && isAdmin && (
-        <>
-          <div className="manager-toolbar">
-            <div style={{ fontSize: 16, fontWeight: 700 }}>📧 Email-рассылка</div>
-          </div>
-          <div className="chart-section" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
-            <div className="mgr-field">
-              <label>Получатели</label>
-              <select value={broadcastTarget} onChange={e => setBroadcastTarget(e.target.value)}>
-                <option value="all">Все активные пользователи</option>
-                <option value="admins">Только админы</option>
-                <option value="managers">Только менеджеры</option>
-              </select>
-            </div>
-            <div className="mgr-field">
-              <label>Тема письма</label>
-              <input value={broadcastSubject} onChange={e => setBroadcastSubject(e.target.value)} placeholder="Например: Новый курс уже доступен!" />
-            </div>
-            <div className="mgr-field">
-              <label>HTML-содержимое</label>
-              <textarea
-                value={broadcastHtml}
-                onChange={e => setBroadcastHtml(e.target.value)}
-                placeholder="<h1>Привет!</h1><p>У нас отличные новости...</p>"
-                style={{ minHeight: 200, fontFamily: 'monospace', fontSize: 12 }}
-              />
-            </div>
-            <div>
-              <button className="btn-save" onClick={sendBroadcast} disabled={broadcastSending || !broadcastSubject.trim() || !broadcastHtml.trim()}>
-                <Send size={14} /> {broadcastSending ? 'Отправка...' : 'Разослать'}
-              </button>
-            </div>
-          </div>
-        </>
-      )}
-
-      {/* ── AUDIT (admin only) ───────────────────────────── */}
-      {tab === 'audit' && isAdmin && (
-        <>
-          <div className="manager-toolbar">
-            <div style={{ fontSize: 16, fontWeight: 700 }}>📋 Журнал активности</div>
-          </div>
-          {auditStats && auditStats.byDay && (
-            <div className="chart-section" style={{ marginBottom: 16 }}>
-              <div className="chart-title">Активность по дням (7 дней)</div>
-              <div className="bar-chart">
-                {auditStats.byDay.map((d: any) => {
-                  const max = Math.max(...auditStats.byDay.map((x: any) => parseInt(x.count)), 1);
-                  const pct = Math.round((parseInt(d.count) / max) * 100);
-                  return (
-                    <div key={d.day} className="bar-row">
-                      <div className="bar-label">{new Date(d.day).toLocaleDateString('ru-RU', { day: 'numeric', month: 'short' })}</div>
-                      <div className="bar-track">
-                        <div className="bar-fill" style={{ width: `${pct}%`, background: '#6366f1' }}>
-                          <span>{d.count}</span>
-                        </div>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          )}
-          {auditLogs.length === 0 ? (
-            <div className="empty-tab">
-              <div className="empty-tab-icon">📋</div>
-              <div className="empty-tab-title">Журнал пуст</div>
-            </div>
-          ) : (
-            <table className="manager-table">
-              <thead>
-                <tr>
-                  <th>Время</th>
-                  <th>Пользователь</th>
-                  <th>Действие</th>
-                  <th>Детали</th>
-                </tr>
-              </thead>
-              <tbody>
-                {auditLogs.map((log: any) => (
-                  <tr key={log.id}>
-                    <td style={{ fontSize: 12, whiteSpace: 'nowrap' }}>{new Date(log.created_at).toLocaleString('ru-RU')}</td>
-                    <td>{log.user_name || '—'} <span style={{ color: 'var(--text-muted)', fontSize: 11 }}>({log.user_email || 'system'})</span></td>
-                    <td><span className="status-badge public">{log.action}</span></td>
-                    <td style={{ fontSize: 12, color: 'var(--text-muted)' }}>{log.details || '—'}</td>
                   </tr>
                 ))}
               </tbody>
