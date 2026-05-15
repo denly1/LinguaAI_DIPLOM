@@ -20,7 +20,6 @@ import MatchingGame from './pages/MatchingGame';
 import SpeedRound from './pages/SpeedRound';
 import Landing from './pages/Landing';
 import ErrorAnalysis from './pages/ErrorAnalysis';
-import VoiceTrainer from './pages/VoiceTrainer';
 import Notifications from './pages/Notifications';
 import { ToastProvider } from './components/Toast/Toast';
 import { CoursesProvider, useCourses } from './context/CoursesContext';
@@ -107,7 +106,6 @@ const AppShell: React.FC = () => {
             <Route path="/games/speed" element={isGuest ? <GuestBlock /> : <SpeedRound />} />
             <Route path="/courses" element={<Courses />} />
             <Route path="/error-analysis" element={isGuest ? <GuestBlock /> : <ErrorAnalysis />} />
-            <Route path="/voice-trainer" element={isGuest ? <GuestBlock /> : <VoiceTrainer />} />
             <Route path="/notifications" element={isGuest ? <GuestBlock /> : <Notifications />} />
             <Route
               path="/manager"

@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import {
   Home, BookOpen, CreditCard, BarChart2, Settings,
-  Zap, Trophy, ChevronLeft, ChevronRight, Brain, Target, Award, Gamepad2, Shield, Crown, UserCheck, User as UserIcon, GraduationCap, LayoutDashboard, Mic, AlertTriangle, Bell
+  Zap, Trophy, ChevronLeft, ChevronRight, Brain, Target, Award, Gamepad2, Shield, Crown, UserCheck, User as UserIcon, GraduationCap, LayoutDashboard, AlertTriangle, Bell
 } from 'lucide-react';
 import { useApp } from '../../context/AppContext';
 import { useAuth } from '../../context/AuthContext';
@@ -61,7 +61,6 @@ const Sidebar: React.FC<SidebarProps> = ({ collapsed, onToggle }) => {
     { to: '/leaderboard',  icon: Award,          label: 'Лидеры',     end: false },
     { to: '/progress',        icon: BarChart2,       label: 'Прогресс',     end: false },
     { to: '/error-analysis',  icon: AlertTriangle,  label: 'Анализ ошибок', end: false },
-    { to: '/voice-trainer',   icon: Mic,            label: 'Голосовой',    end: false },
     { to: '/notifications',   icon: Bell,           label: 'Уведомления',  end: false },
     { to: '/settings',        icon: Settings,       label: 'Настройки',    end: false },
   ];
