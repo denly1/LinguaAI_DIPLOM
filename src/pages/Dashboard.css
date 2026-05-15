@@ -63,7 +63,6 @@
   align-items: center;
   gap: 14px;
   cursor: pointer;
-  box-shadow: var(--shadow-sm);
 }
 
 .stat-card:hover {
@@ -118,7 +117,6 @@
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 20px;
-  box-shadow: var(--shadow-sm);
 }
 
 .card-header {
@@ -189,7 +187,6 @@
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 16px;
-  box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
 .today-fill {
@@ -484,7 +481,6 @@
 .dict-mini-name { flex: 1; color: var(--text); }
 .dict-mini-count { color: var(--text-muted); }
 
-/* ===== Admin widget on Dashboard ===== */
 .admin-widget {
   border-left: 3px solid #f87171;
 }
@@ -543,7 +539,7 @@
   gap: 14px;
   background: var(--bg-card);
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 16px 20px;
   margin-bottom: 24px;
   cursor: pointer;
@@ -585,15 +581,15 @@
 }
 
 .ai-quest-card {
-  background: linear-gradient(135deg, rgba(245,158,11,0.1) 0%, rgba(245,158,11,0.03) 100%);
+  background: rgba(245,158,11,0.08);
   border: 1px solid rgba(245,158,11,0.25);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 14px 18px;
   margin-bottom: 20px;
 }
 
 .ai-quest-card.completed {
-  background: linear-gradient(135deg, rgba(16,185,129,0.1) 0%, rgba(16,185,129,0.03) 100%);
+  background: rgba(16,185,129,0.08);
   border-color: rgba(16,185,129,0.25);
 }
 
@@ -634,9 +630,9 @@
   display: flex;
   align-items: center;
   gap: 12px;
-  background: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(99,102,241,0.03) 100%);
+  background: rgba(99,102,241,0.08);
   border: 1px solid rgba(99,102,241,0.2);
-  border-radius: 12px;
+  border-radius: 6px;
   padding: 14px 18px;
   margin-bottom: 20px;
 }

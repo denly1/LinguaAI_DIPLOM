@@ -1,4 +1,3 @@
-/* ── Page ─────────────────────────────────────────── */
 .auth-page {
   min-height: 100vh;
   display: flex;
@@ -8,7 +7,6 @@
   padding: 24px;
 }
 
-/* ── Two-column container ──────────────────────────── */
 .auth-container {
   display: grid;
   grid-template-columns: 1fr 420px;
@@ -21,7 +19,6 @@
   overflow: hidden;
 }
 
-/* ── Left panel ────────────────────────────────────── */
 .auth-left {
   background: var(--bg-secondary);
   padding: 48px 44px;
@@ -111,7 +108,6 @@
   line-height: 1.4;
 }
 
-/* ── Right card ────────────────────────────────────── */
 .auth-card {
   background: var(--bg-card);
   padding: 44px 40px;
@@ -133,7 +129,6 @@
   margin-bottom: 24px;
 }
 
-/* ── Tabs ──────────────────────────────────────────── */
 .auth-tabs {
   display: flex;
   background: var(--bg-secondary);
@@ -160,7 +155,6 @@
   color: white;
 }
 
-/* ── Form ──────────────────────────────────────────── */
 .auth-form {
   display: flex;
   flex-direction: column;
@@ -225,7 +219,6 @@
 
 .auth-eye-btn:hover { color: var(--primary-light); }
 
-/* ── Error ─────────────────────────────────────────── */
 .auth-error {
   background: rgba(239,68,68,0.08);
   border: 1px solid rgba(239,68,68,0.25);
@@ -238,7 +231,6 @@
   gap: 8px;
 }
 
-/* ── Submit button ─────────────────────────────────── */
 .auth-submit-btn {
   display: flex;
   align-items: center;
@@ -268,7 +260,6 @@
   display: inline-block;
 }
 
-/* ── Switch link ───────────────────────────────────── */
 .auth-switch {
   margin-top: 20px;
   text-align: center;
@@ -289,7 +280,6 @@
 
 .auth-switch-link:hover { opacity: 0.8; }
 
-/* ── Responsive ────────────────────────────────────── */
 @media (max-width: 760px) {
   .auth-container {
     grid-template-columns: 1fr;

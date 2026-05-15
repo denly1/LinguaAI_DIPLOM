@@ -66,7 +66,6 @@
   color: var(--text-muted);
 }
 
-/* Stats row */
 .manager-stats {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -96,7 +95,6 @@
   color: var(--text-muted);
 }
 
-/* Toolbar */
 .manager-toolbar {
   display: flex;
   align-items: center;
@@ -144,11 +142,10 @@
 .btn-add:hover { opacity: 0.9; }
 
 .ai-gen-btn {
-  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+  background: #6366f1;
   color: white;
 }
 
-/* Table */
 .manager-table {
   width: 100%;
   border-collapse: collapse;
@@ -201,7 +198,6 @@
 .tbl-btn:hover { border-color: var(--primary); color: var(--primary-light); }
 .tbl-btn.danger:hover { border-color: #ef4444; color: #f87171; }
 
-/* Status badges */
 .status-badge {
   padding: 3px 10px;
   border-radius: 20px;
@@ -219,7 +215,6 @@
 .status-badge.public { background: rgba(99,102,241,0.1); color: #818cf8; border-color: rgba(99,102,241,0.3); }
 .status-badge.private { background: rgba(156,163,175,0.1); color: #9ca3af; border-color: rgba(156,163,175,0.3); }
 
-/* Modal */
 .mgr-modal-overlay {
   position: fixed;
   inset: 0;
@@ -349,7 +344,6 @@
 
 .btn-save:hover { opacity: 0.9; }
 
-/* Questions builder */
 .questions-list {
   display: flex;
   flex-direction: column;
@@ -405,7 +399,6 @@
 
 .btn-add-question:hover { border-color: var(--primary); color: var(--primary-light); }
 
-/* Word pairs builder */
 .word-pairs-list {
   display: flex;
   flex-direction: column;
@@ -443,7 +436,6 @@
 
 .btn-remove-pair:hover { border-color: #ef4444; color: #f87171; }
 
-/* Tier price row */
 .tier-price-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -476,7 +468,6 @@
   outline: none;
 }
 
-/* Purchases tab */
 .purchases-list {
   display: flex;
   flex-direction: column;
@@ -565,7 +556,6 @@
   .modal-content { width: 96vw; padding: 20px; }
 }
 
-/* Export / import buttons */
 .btn-export {
   display: flex;
   align-items: center;
@@ -598,7 +588,6 @@
 }
 .btn-import:hover { border-color: #10b981; color: #34d399; }
 
-/* Users tab */
 .user-role-select {
   padding: 5px 10px;
   border-radius: 6px;
@@ -619,7 +608,6 @@
 .user-active-dot.active { background: #10b981; }
 .user-active-dot.inactive { background: #ef4444; }
 
-/* Reports / Charts */
 .reports-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -656,7 +644,6 @@
 .report-card-delta.up { color: #34d399; }
 .report-card-delta.down { color: #f87171; }
 
-/* Simple bar chart */
 .chart-section {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -718,7 +705,6 @@
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-/* Import modal textarea */
 .import-textarea {
   width: 100%;
   min-height: 200px;

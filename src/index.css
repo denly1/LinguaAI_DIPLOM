@@ -6,10 +6,6 @@
   padding: 0;
 }
 
-/* ─────────────────────────────────────────────────────────────
-   Цветовая палитра. Один источник правды для светлой и тёмной тем.
-   ───────────────────────────────────────────────────────────── */
-
 :root,
 [data-theme="light"] {
   --brand:          #5555cc;
@@ -24,7 +20,6 @@
   --danger:         #cc4444;
   --danger-soft:    #ffdddd;
 
-  /* Поверхности */
   --bg:             #f4f6fb;
   --bg-elevated:    #ffffff;
   --bg-subtle:      #f8fafc;
@@ -32,13 +27,11 @@
   --topbar-bg:      #ffffff;
   --input-bg:       #ffffff;
 
-  /* Текст */
   --text:           #0f172a;
   --text-secondary: #334155;
   --text-muted:     #64748b;
   --text-faint:     #94a3b8;
 
-  /* Разделители */
   --border:         #e2e8f0;
   --border-strong:  #cbd5e1;
 
@@ -46,13 +39,11 @@
   --radius:         6px;
   --radius-lg:      8px;
   --shadow-xs:      0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-sm:      0 1px 3px rgba(0, 0, 0, 0.05);
   --shadow-md:      0 2px 6px rgba(0, 0, 0, 0.06);
   --shadow-lg:      0 4px 12px rgba(0, 0, 0, 0.08);
 
   --focus-ring:     0 0 0 2px rgba(85, 85, 204, 0.2);
 
-  /* Совместимость с компонентами */
   --bg-card:        #ffffff;
   --bg-card2:       #f8fafc;
   --bg-secondary:   #f1f5f9;
@@ -96,7 +87,6 @@
 
   --focus-ring:     0 0 0 3px rgba(107, 137, 255, 0.35);
 
-  /* Совместимость с компонентами */
   --bg-card:        #1a1f2e;
   --bg-card2:       #161b27;
   --bg-secondary:   #131720;
@@ -105,7 +95,6 @@
   --primary-dark:   #4a6cf7;
 }
 
-/* Базовые стили документа */
 html {
   font-size: 15px;
   scroll-behavior: auto;
@@ -141,7 +130,6 @@ button:focus-visible {
   box-shadow: var(--focus-ring);
 }
 
-/* Скроллбары */
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
@@ -151,7 +139,6 @@ button:focus-visible {
 }
 ::-webkit-scrollbar-thumb:hover { background: var(--border-strong); }
 
-/* Утилиты */
 .gradient-text {
   color: var(--brand);
 }
@@ -162,7 +149,6 @@ button:focus-visible {
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Универсальные бейджи */
 .badge {
   display: inline-flex;
   align-items: center;
